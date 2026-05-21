@@ -75,6 +75,7 @@ String? serializeParam(
       case ParamType.JSON:
         data = json.encode(param);
 
+      // ignore: unreachable_switch_default
       default:
         data = null;
     }
@@ -230,6 +231,7 @@ dynamic deserializeParam<T>(
       case ParamType.JSON:
         return json.decode(param);
 
+      // ignore: unreachable_switch_default
       default:
         return null;
     }

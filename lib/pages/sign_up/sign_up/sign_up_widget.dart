@@ -21,6 +21,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   late SignUpModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  // ignore: unused_field
   String _selectedDialCode = '+1';
 
   @override
