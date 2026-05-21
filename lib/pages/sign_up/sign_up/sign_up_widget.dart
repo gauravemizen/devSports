@@ -1,6 +1,8 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/index.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'sign_up_model.dart';
@@ -483,7 +485,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                             focusNode: _model.textFieldFocusNode3,
                             autofocus: false,
                             enabled: true,
-                            obscureText: false,
+                            obscureText: !_model.passwordVisibility,
                             decoration: InputDecoration(
                               isDense: true,
                               labelStyle: FlutterFlowTheme.of(context)
@@ -564,6 +566,20 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                 color: Color(0xFF99A1AF),
                                 size: 20.0,
                               ),
+                              suffixIcon: InkWell(
+                                onTap: () async {
+                                  safeSetState(() => _model.passwordVisibility =
+                                      !_model.passwordVisibility);
+                                },
+                                focusNode: FocusNode(skipTraversal: true),
+                                child: Icon(
+                                  _model.passwordVisibility
+                                      ? Icons.visibility_outlined
+                                      : Icons.visibility_off_outlined,
+                                  color: Color(0xFF99A1AF),
+                                  size: 20.0,
+                                ),
+                              ),
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
@@ -585,7 +601,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                       .bodyMedium
                                       .fontStyle,
                                 ),
-                            keyboardType: TextInputType.phone,
                             cursorColor: FlutterFlowTheme.of(context).info,
                             enableInteractiveSelection: true,
                             validator: _model.textController3Validator
@@ -636,8 +651,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                             borderRadius: BorderRadius.circular(16.0),
                           ),
                           child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
+                            onPressed: () async {
+                              context.pushNamed(OtpVerifyWidget.routeName);
                             },
                             text: 'Create Account',
                             options: FFButtonOptions(
@@ -671,6 +686,94 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               elevation: 0.0,
                               borderRadius: BorderRadius.circular(16.0),
                             ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                        child: RichText(
+                          textScaler: MediaQuery.of(context).textScaler,
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'Already have an account? ',
+                                style: FlutterFlowTheme.of(context)
+                                    .labelLarge
+                                    .override(
+                                      font: GoogleFonts.inter(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .labelLarge
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .labelLarge
+                                            .fontStyle,
+                                      ),
+                                      color: Color(0xFF99A1AF),
+                                      letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .labelLarge
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .labelLarge
+                                          .fontStyle,
+                                    ),
+                              ),
+                              TextSpan(
+                                text: 'Sign In',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      font: GoogleFonts.inter(
+                                        fontWeight: FontWeight.w500,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
+                                      color: Color(0xFF17C2FD),
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                mouseCursor: SystemMouseCursors.click,
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () async {
+                                    context.pushNamed(
+                                      SignInWidget.routeName,
+                                      extra: <String, dynamic>{
+                                        '__transition_info__': TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                        ),
+                                      },
+                                    );
+                                  },
+                              )
+                            ],
+                            style: FlutterFlowTheme.of(context)
+                                .labelLarge
+                                .override(
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .labelLarge
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .labelLarge
+                                        .fontStyle,
+                                  ),
+                                  color: Color(0xFFB8C7E0),
+                                  letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .fontStyle,
+                                ),
                           ),
                         ),
                       ),

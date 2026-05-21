@@ -57,6 +57,10 @@ abstract class FlutterFlowTheme {
   late Color info;
 
   late Color borderColor;
+  late Color backgroundColor;
+  late Color textFieldColor;
+  late Color skyBlue;
+  late Color dividerColor;
 
   FFDesignTokens get designToken => FFDesignTokens(this);
 
@@ -164,6 +168,10 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color info = const Color(0xFFFFFFFF);
 
   late Color borderColor = const Color(0xFF0A3854);
+  late Color backgroundColor = const Color(0xFF050816);
+  late Color textFieldColor = const Color(0xFF09122E);
+  late Color skyBlue = const Color(0xFF17C2FD);
+  late Color dividerColor = const Color(0xFF073245);
 }
 
 abstract class Typography {
@@ -352,6 +360,10 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color info = const Color(0xFFFFFFFF);
 
   late Color borderColor = const Color(0xFFCA9100);
+  late Color backgroundColor = const Color(0xFF46522A);
+  late Color textFieldColor = const Color(0xFF57356B);
+  late Color skyBlue = const Color(0xFFA33A7B);
+  late Color dividerColor = const Color(0xFFE87133);
 }
 
 class FFDesignTokens {

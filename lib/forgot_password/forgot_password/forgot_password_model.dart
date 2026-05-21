@@ -1,8 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'sign_up_widget.dart' show SignUpWidget;
+import '/index.dart';
+import 'forgot_password_widget.dart' show ForgotPasswordWidget;
 import 'package:flutter/material.dart';
 
-class SignUpModel extends FlutterFlowModel<SignUpWidget> {
+class ForgotPasswordModel extends FlutterFlowModel<ForgotPasswordWidget> {
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for TextField widget.
@@ -13,10 +14,6 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode3;
-  TextEditingController? textController3;
-  String? Function(BuildContext, String?)? textController3Validator;
 
   @override
   void initState(BuildContext context) {}
@@ -28,8 +25,5 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
 
     textFieldFocusNode2?.dispose();
     textController2?.dispose();
-
-    textFieldFocusNode3?.dispose();
-    textController3?.dispose();
   }
 }

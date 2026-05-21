@@ -422,26 +422,56 @@ class _OnboardingScreenWidgetState extends State<OnboardingScreenWidget> {
                               ].divide(SizedBox(height: 16.0)),
                             ),
                           ),
-                          Container(
-                            width: double.infinity,
-                            height: 56.0,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [Color(0xFF06B6D4), Color(0xFF2563EB)],
-                                stops: [0.09, 1.0],
-                                begin: AlignmentDirectional(1.0, 0.0),
-                                end: AlignmentDirectional(-1.0, 0),
+                          InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              context.pushNamed(
+                                SignInWidget.routeName,
+                                extra: <String, dynamic>{
+                                  '__transition_info__': TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 0),
+                                  ),
+                                },
+                              );
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              height: 56.0,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color(0xFF06B6D4),
+                                    Color(0xFF2563EB)
+                                  ],
+                                  stops: [0.09, 1.0],
+                                  begin: AlignmentDirectional(1.0, 0.0),
+                                  end: AlignmentDirectional(-1.0, 0),
+                                ),
+                                borderRadius: BorderRadius.circular(16.0),
                               ),
-                              borderRadius: BorderRadius.circular(16.0),
-                            ),
-                            child: Align(
-                              alignment: AlignmentDirectional(0.0, 0.0),
-                              child: Text(
-                                'Get Started',
-                                style: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      font: GoogleFonts.inter(
+                              child: Align(
+                                alignment: AlignmentDirectional(0.0, 0.0),
+                                child: Text(
+                                  'Get Started',
+                                  style: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        font: GoogleFonts.inter(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .fontStyle,
+                                        ),
+                                        letterSpacing: 0.0,
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .fontWeight,
@@ -449,14 +479,7 @@ class _OnboardingScreenWidgetState extends State<OnboardingScreenWidget> {
                                             .titleSmall
                                             .fontStyle,
                                       ),
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontStyle,
-                                    ),
+                                ),
                               ),
                             ),
                           ),
