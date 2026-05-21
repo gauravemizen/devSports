@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'sign_up_model.dart';
@@ -20,6 +21,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   late SignUpModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  String _selectedDialCode = '+1';
 
   @override
   void initState() {
@@ -53,22 +55,28 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: Color(0xFF050816),
-        body: SafeArea(
-          top: true,
-          child: Stack(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                child: Image.asset(
-                  'assets/images/background_image.png',
-                  width: double.infinity,
-                  height: double.infinity,
-                  fit: BoxFit.cover,
-                ),
+        resizeToAvoidBottomInset: false,
+        body: Stack(
+          children: [
+            // Fixed full-screen background image
+            Positioned.fill(
+              child: Image.asset(
+                'assets/images/background_image.png',
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.cover,
               ),
-              Padding(
+            ),
+
+            Positioned.fill(
+              child: SafeArea(
+                top: true,
+                child: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                 child: SingleChildScrollView(
+                  padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom + 24.0,
+                  ),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -165,7 +173,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                             focusNode: _model.textFieldFocusNode1,
                             autofocus: false,
                             enabled: true,
-                            obscureText: false,
+                            obscureText: true,
                             decoration: InputDecoration(
                               isDense: true,
                               labelStyle: FlutterFlowTheme.of(context)
@@ -304,118 +312,131 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                             EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                         child: Container(
                           width: double.infinity,
-                          child: TextFormField(
-                            controller: _model.textController2,
-                            focusNode: _model.textFieldFocusNode2,
-                            autofocus: false,
-                            enabled: true,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              isDense: true,
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    font: GoogleFonts.inter(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontStyle,
-                                    ),
-                                    color: Color(0xFF6A7282),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .fontStyle,
-                                  ),
-                              hintText: '+1 234 567 8900',
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    font: GoogleFonts.inter(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontStyle,
-                                    ),
-                                    color: Color(0xFF6A7282),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .fontStyle,
-                                  ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color:
-                                      FlutterFlowTheme.of(context).borderColor,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(16.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color:
-                                      FlutterFlowTheme.of(context).borderColor,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(16.0),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(16.0),
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(16.0),
-                              ),
-                              filled: true,
-                              fillColor: Color(0xFF09122E),
-                              prefixIcon: Icon(
-                                Icons.phone,
-                                color: Color(0xFF99A1AF),
-                                size: 20.0,
-                              ),
+                          decoration: BoxDecoration(
+                            color: Color(0xFF09122E),
+                            borderRadius: BorderRadius.circular(16.0),
+                            border: Border.all(
+                              color: FlutterFlowTheme.of(context).borderColor,
+                              width: 1.0,
                             ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  font: GoogleFonts.inter(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
-                                  ),
+                          ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              // Country Code Picker
+                              CountryCodePicker(
+                                onChanged: (code) {
+                                  setState(() {
+                                    _selectedDialCode = code.dialCode ?? '+1';
+                                  });
+                                },
+                                initialSelection: 'US',
+                                favorite: ['+1', 'US'],
+                                showCountryOnly: false,
+                                showOnlyCountryWhenClosed: false,
+                                alignLeft: false,
+                                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                flagWidth: 24.0,
+                                textStyle: GoogleFonts.inter(
                                   color: FlutterFlowTheme.of(context).info,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontStyle,
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.w400,
                                 ),
-                            keyboardType: TextInputType.phone,
-                            cursorColor: FlutterFlowTheme.of(context).info,
-                            enableInteractiveSelection: true,
-                            validator: _model.textController2Validator
-                                .asValidator(context),
+                                dialogBackgroundColor: Color(0xFF09122E),
+                                dialogTextStyle: GoogleFonts.inter(
+                                  color: FlutterFlowTheme.of(context).info,
+                                  fontSize: 14.0,
+                                ),
+                                searchStyle: GoogleFonts.inter(
+                                  color: FlutterFlowTheme.of(context).info,
+                                  fontSize: 14.0,
+                                ),
+                                searchDecoration: InputDecoration(
+                                  hintText: 'Search country...',
+                                  hintStyle: GoogleFonts.inter(
+                                    color: Color(0xFF6A7282),
+                                    fontSize: 14.0,
+                                  ),
+                                  prefixIcon: Icon(
+                                    Icons.search,
+                                    color: Color(0xFF99A1AF),
+                                  ),
+                                  enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .borderColor,
+                                    ),
+                                  ),
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .borderColor,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              // Vertical divider
+                              Container(
+                                width: 1.0,
+                                height: 28.0,
+                                color: FlutterFlowTheme.of(context).borderColor,
+                              ),
+                              // Phone number input
+                              Expanded(
+                                child: TextFormField(
+                                  controller: _model.textController2,
+                                  focusNode: _model.textFieldFocusNode2,
+                                  autofocus: false,
+                                  enabled: true,
+                                  obscureText: false,
+                                  keyboardType: TextInputType.phone,
+                                  cursorColor:
+                                      FlutterFlowTheme.of(context).info,
+                                  enableInteractiveSelection: true,
+                                  decoration: InputDecoration(
+                                    isDense: true,
+                                    hintText: '234 567 8900',
+                                    hintStyle: GoogleFonts.inter(
+                                      color: Color(0xFF6A7282),
+                                      fontSize: 14.0,
+                                    ),
+                                    border: InputBorder.none,
+                                    enabledBorder: InputBorder.none,
+                                    focusedBorder: InputBorder.none,
+                                    errorBorder: InputBorder.none,
+                                    focusedErrorBorder: InputBorder.none,
+                                    contentPadding:
+                                        EdgeInsetsDirectional.fromSTEB(
+                                            12.0, 14.0, 12.0, 14.0),
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.inter(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                        color:
+                                            FlutterFlowTheme.of(context).info,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
+                                  validator: _model.textController2Validator
+                                      .asValidator(context),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -674,13 +695,16 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                           ),
                         ),
                       ),
+
+
                     ],
                   ),
                 ),
               ),
-            ],
-          ),
-        ),
+            ),          // closes SafeArea
+          ),            // closes Positioned.fill (SafeArea)
+          ],
+        ),              // closes Stack
       ),
     );
   }
