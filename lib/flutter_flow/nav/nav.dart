@@ -54,6 +54,36 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: SignUpWidget.routeName,
           path: SignUpWidget.routePath,
           builder: (context, params) => SignUpWidget(),
+        ),
+        FFRoute(
+          name: SignInWidget.routeName,
+          path: SignInWidget.routePath,
+          builder: (context, params) => SignInWidget(),
+        ),
+        FFRoute(
+          name: OtpVerifyWidget.routeName,
+          path: OtpVerifyWidget.routePath,
+          builder: (context, params) => OtpVerifyWidget(),
+        ),
+        FFRoute(
+          name: CompleteProfileWidget.routeName,
+          path: CompleteProfileWidget.routePath,
+          builder: (context, params) => CompleteProfileWidget(),
+        ),
+        FFRoute(
+          name: FavouritePlayerWidget.routeName,
+          path: FavouritePlayerWidget.routePath,
+          builder: (context, params) => FavouritePlayerWidget(),
+        ),
+        FFRoute(
+          name: ForgotPasswordWidget.routeName,
+          path: ForgotPasswordWidget.routePath,
+          builder: (context, params) => ForgotPasswordWidget(),
+        ),
+        FFRoute(
+          name: ResetPasswordWidget.routeName,
+          path: ResetPasswordWidget.routePath,
+          builder: (context, params) => ResetPasswordWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
